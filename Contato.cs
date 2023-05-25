@@ -16,6 +16,7 @@ namespace AgendaSimples
         private string primeiroNome;
         private string sobrenome;
         private string telefone;
+        private string email;
 
         // PROPRIEDADES (GET e SET)
         public string PrimeiroNome
@@ -35,10 +36,16 @@ namespace AgendaSimples
             get { return telefone; }
             set {
                 if (value.Length == 11)
-                    Telefone = value;
+                    telefone = value;
                 else
-                    Telefone = "00-00000-0000";
+                    telefone = "00000000000";
             }
+        }
+
+        public string Email
+        {
+            get { return email; }   
+            set { email = value; }
         }
 
         // Método construtor da classe.
@@ -47,14 +54,16 @@ namespace AgendaSimples
             PrimeiroNome = "José";
             Sobrenome = "da Silva";
             Telefone = "11-91234-5678";
+            Email = "exemplo@exemplo.com";
         }
 
         //Sobrecarga do método construtor da classe.
-        public Contato (string primeiroNome, string sobrenome, string telefone)
+        public Contato (string primeiroNome, string sobrenome, string telefone, string email)
         {
             PrimeiroNome = primeiroNome;
             Sobrenome = sobrenome;
             Telefone = telefone;
+            Email = email;
         }
 
         public override string ToString()
@@ -62,9 +71,12 @@ namespace AgendaSimples
             string saida = String.Empty;
             saida += String.Format("{0}, {1}", PrimeiroNome, Sobrenome);
             saida += String.Format("{0}-{1}-{2}",
-                Telefone.Substring(0, 1),
-                Telefone.Substring(2, 4),
-                Telefone.Substring(7, 3));
+                Telefone.Substring(0, 2),
+                Telefone.Substring(2, 5),
+                Telefone.Substring(7, 4)
+                );
+            saida += " "; // Apenas um espaço entre o telefone e e-mail.
+            saida += String.Format("{0}", Email);
 
             return saida;
         }
